@@ -2,14 +2,6 @@ package com.changgou.entity;
 
 import java.io.Serializable;
 
-/**
- * 描述
- *
- * @author 三国的包子
- * @version 1.0
- * @package entity *
- * @since 1.0
- */
 public class Result<T> implements Serializable {
     private boolean flag;//是否成功
     private Integer code;//返回码

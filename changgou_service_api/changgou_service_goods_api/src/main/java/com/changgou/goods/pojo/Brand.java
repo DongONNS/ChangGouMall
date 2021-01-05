@@ -6,22 +6,17 @@ import java.io.Serializable;
 
 /**
  * brand实体类
- * @author 黑马架构师2.5
- *
  */
+// @Table 用于配置表与实体类的映射关系
 @Table(name="tb_brand")
 public class Brand implements Serializable {
-
+	// @Id用于标识主键属性
 	@Id
 	private Integer id;//品牌id
-
-
-	
 	private String name;//品牌名称
 	private String image;//品牌图片地址
 	private String letter;//品牌的首字母
 	private Integer seq;//排序
-
 	
 	public Integer getId() {
 		return id;
@@ -57,7 +52,4 @@ public class Brand implements Serializable {
 	public void setSeq(Integer seq) {
 		this.seq = seq;
 	}
-
-
-
 }

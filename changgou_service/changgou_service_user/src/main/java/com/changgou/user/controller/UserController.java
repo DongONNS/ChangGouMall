@@ -49,7 +49,7 @@ public class UserController {
             return new Result(true,StatusCode.OK,"登录成功了",token);
         }
         // 密码匹配失败，登录失败，提示账号或密码错误
-        return new Result(false,StatusCode.LOGINERROR,"帐号或密码错误");
+        return new Result(false,StatusCode.LOGIN_ERROR,"帐号或密码错误");
     }
 
     /**

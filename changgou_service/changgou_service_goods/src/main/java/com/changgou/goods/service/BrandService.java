@@ -75,7 +75,5 @@ public interface BrandService {
      * @param categoryName
      * @return
      */
-    public List<Map> findBrandListByCategoryName(String categoryName);
-
-
+    List<Map> findBrandListByCategoryName(String categoryName);
 }

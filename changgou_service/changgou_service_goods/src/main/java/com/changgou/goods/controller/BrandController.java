@@ -33,7 +33,7 @@ public class BrandController {
      * @return
      */
     @GetMapping
-    public Result findAll(){
+    public Result<Brand> findAll(){
         try {
             System.out.println("准备睡觉:" + Thread.currentThread().getId());
             Thread.sleep(10000);
@@ -106,7 +106,6 @@ public class BrandController {
         return new Result(true,StatusCode.OK,"查询成功",list);
     }
 
-
     /***
      * 分页搜索实现
      * @param searchMap
@@ -117,7 +116,7 @@ public class BrandController {
     @GetMapping(value = "/search/{page}/{size}" )
     public Result findPage(@RequestParam Map searchMap, @PathVariable  int page, @PathVariable  int size){
         Page<Brand> pageList = brandService.findPage(searchMap, page, size);
-        PageResult pageResult=new PageResult(pageList.getTotal(),pageList.getResult());
+        PageResult pageResult = new PageResult(pageList.getTotal(),pageList.getResult());
         return new Result(true,StatusCode.OK,"查询成功",pageResult);
     }
 
