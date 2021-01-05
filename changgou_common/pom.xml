@@ -30,6 +30,12 @@
             <version>1.2.51</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.10</version>
+        </dependency>
+
         <!-- eureka-client -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>

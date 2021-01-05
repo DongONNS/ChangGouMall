@@ -1,5 +1,7 @@
 package com.changgou.file.controller;
 
+import com.changgou.entity.Result;
+import com.changgou.entity.StatusCode;
 import com.changgou.file.util.FastDFSClient;
 import com.changgou.file.util.FastDFSFile;
 import org.apache.commons.lang.StringUtils;
@@ -39,7 +41,7 @@ public class FileController {
 
             //封装返回结果
             String url = FastDFSClient.getTrackerUrl()+uploadResult[0]+"/"+uploadResult[1];
-            return new Result(true,StatusCode.OK,"文件上传成功",url);
+            return new Result(true, StatusCode.OK,"文件上传成功",url);
         }catch (Exception e){
             e.printStackTrace();
         }

@@ -37,29 +37,19 @@ public class FastDFSClient {
 
         //接收返回数据
         String[] uploadResults = null;
-        StorageClient storageClient=null;
+        StorageClient storageClient = null;
         try {
             //创建StorageClient客户端对象
             storageClient = getTrackerClient();
 
-            /***
-             * 文件上传
-             * 1)文件字节数组
-             * 2)文件扩展名
-             * 3)文件作者
-             */
             uploadResults = storageClient.upload_file(file.getContent(), file.getExt(), meta_list);
         } catch (Exception e) {
             logger.error("Exception when uploadind the file:" + file.getName(), e);
         }
 
-        if (uploadResults == null && storageClient!=null) {
+        if (uploadResults == null && storageClient != null) {
             logger.error("upload file fail, error code:" + storageClient.getErrorCode());
         }
-        //获取组名
-        String groupName = uploadResults[0];
-        //获取文件存储路径
-        String remoteFileName = uploadResults[1];
         return uploadResults;
     }
 
@@ -121,12 +111,14 @@ public class FastDFSClient {
      * @return
      * @throws IOException
      */
-    public static StorageServer[] getStoreStorages(String groupName)
+    public static StorageServer[] getStorageServers(String groupName)
             throws IOException {
         //创建TrackerClient
         TrackerClient trackerClient = new TrackerClient();
+
         //获取TrackerServer
         TrackerServer trackerServer = trackerClient.getConnection();
+
         //获取Storage组
         return trackerClient.getStoreStorages(trackerServer, groupName);
     }
@@ -138,8 +130,7 @@ public class FastDFSClient {
      * @return
      * @throws IOException
      */
-    public static ServerInfo[] getFetchStorages(String groupName,
-                                                String remoteFileName) throws IOException {
+    public static ServerInfo[] getServerInfo(String groupName, String remoteFileName) throws IOException {
         TrackerClient trackerClient = new TrackerClient();
         TrackerServer trackerServer = trackerClient.getConnection();
         return trackerClient.getFetchStorages(trackerServer, groupName, remoteFileName);
