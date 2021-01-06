@@ -5,10 +5,12 @@ import com.changgou.entity.StatusCode;
 import com.changgou.goods.service.AlbumService;
 import com.changgou.goods.pojo.Album;
 import com.github.pagehelper.Page;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Map;
+
 @RestController
 @CrossOrigin
 @RequestMapping("/album")
@@ -97,11 +99,9 @@ public class AlbumController {
      * @return
      */
     @GetMapping(value = "/search/{page}/{size}" )
-    public Result findPage(@RequestParam Map searchMap, @PathVariable  int page, @PathVariable  int size){
+    public Result findPage(@RequestParam Map searchMap, @PathVariable  int page, @PathVariable  int size) {
         Page<Album> pageList = albumService.findPage(searchMap, page, size);
-        PageResult pageResult=new PageResult(pageList.getTotal(),pageList.getResult());
-        return new Result(true,StatusCode.OK,"查询成功",pageResult);
+        PageResult pageResult = new PageResult(pageList.getTotal(), pageList.getResult());
+        return new Result(true, StatusCode.OK, "查询成功", pageResult);
     }
-
-
 }

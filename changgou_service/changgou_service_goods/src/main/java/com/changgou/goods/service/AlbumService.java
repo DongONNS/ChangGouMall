@@ -63,7 +63,4 @@ public interface AlbumService {
      */
     Page<Album> findPage(Map<String, Object> searchMap, int page, int size);
 
-
-
-
 }
