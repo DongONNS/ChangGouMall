@@ -71,6 +71,4 @@ public interface SpecService {
     Page<Spec> findPage(Map<String, Object> searchMap, int page, int size);
 
     List<Map> findSpecListByCategoryName(String categoryName);
-
-
 }

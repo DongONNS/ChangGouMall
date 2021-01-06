@@ -1,6 +1,8 @@
 package com.changgou.goods.service.impl;
 
+import com.changgou.goods.dao.CategoryMapper;
 import com.changgou.goods.dao.TemplateMapper;
+import com.changgou.goods.pojo.Category;
 import com.changgou.goods.service.TemplateService;
 import com.changgou.goods.pojo.Template;
 import com.github.pagehelper.Page;
@@ -9,14 +11,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.entity.Example;
 
+import javax.annotation.Resource;
 import java.util.List;
 import java.util.Map;
 
 @Service
 public class TemplateServiceImpl implements TemplateService {
 
-    @Autowired
+    @Resource
     private TemplateMapper templateMapper;
+
+    @Resource
+    private CategoryMapper categorymapper;
 
     /**
      * 查询全部列表
@@ -35,6 +41,17 @@ public class TemplateServiceImpl implements TemplateService {
     @Override
     public Template findById(Integer id){
         return  templateMapper.selectByPrimaryKey(id);
+    }
+
+    /**
+     * 根据分类Id查询模板信息
+     * @param categoryId
+     * @return
+     */
+    @Override
+    public Template findByCategoryId(Integer categoryId) {
+        Category category = categorymapper.selectByPrimaryKey(categoryId);
+        return templateMapper.selectByPrimaryKey(category.getTemplateId());
     }
 
 

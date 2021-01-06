@@ -28,7 +28,7 @@ public class SpuController {
     public Result putMany(@RequestBody Long[] ids){
         spuService.putMany(ids);
         int count = ids.length;
-        return new Result(true,StatusCode.OK,"上架成功！");
+        return new Result("上架成功！");
     }
 
     /**
@@ -39,7 +39,7 @@ public class SpuController {
     @PutMapping(value = "put/{id}")
     public Result put(@PathVariable(value = "id") Long spuId){
         spuService.put(spuId);
-        return new Result(true,StatusCode.OK,"上架成功！");
+        return new Result("上架成功！");
     }
 
     /**
@@ -50,7 +50,7 @@ public class SpuController {
     @PutMapping(value = "pull/{id}")
     public Result pull(@PathVariable(value = "id") Long spuId){
         spuService.pull(spuId);
-        return new Result(true,StatusCode.OK,"下架成功！");
+        return new Result("下架成功！");
     }
 
     /**
@@ -61,7 +61,7 @@ public class SpuController {
     @PutMapping(value = "audit/{id}")
     public Result audit(@PathVariable(value = "id") Long spuId){
         spuService.audit(spuId);
-        return new Result(true,StatusCode.OK,"审核通过！");
+        return new Result("审核通过！");
     }
 
     /**
@@ -79,7 +79,7 @@ public class SpuController {
     @PostMapping("/save")
     public Result saveGoods(@RequestBody Goods goods){
         spuService.saveGoods(goods);
-        return new Result(true,StatusCode.OK,"商品添加成功");
+        return new Result("商品添加成功");
     }
 
     /**
@@ -112,7 +112,7 @@ public class SpuController {
     @PostMapping
     public Result add(@RequestBody Spu spu){
         spuService.add(spu);
-        return new Result(true,StatusCode.OK,"添加成功");
+        return new Result("添加成功");
     }
 
 
@@ -126,7 +126,7 @@ public class SpuController {
     public Result update(@RequestBody Spu spu,@PathVariable Long id){
         spu.setId(id);
         spuService.update(spu);
-        return new Result(true,StatusCode.OK,"修改成功");
+        return new Result("修改成功");
     }
 
     /***
@@ -137,7 +137,7 @@ public class SpuController {
     @DeleteMapping(value = "/{id}" )
     public Result delete(@PathVariable String id){
         spuService.delete(id);
-        return new Result(true,StatusCode.OK,"删除成功");
+        return new Result("删除成功");
     }
 
     /***
@@ -150,7 +150,6 @@ public class SpuController {
         List<Spu> list = spuService.findList(searchMap);
         return new Result(true,StatusCode.OK,"查询成功",list);
     }
-
 
     /***
      * 分页搜索实现

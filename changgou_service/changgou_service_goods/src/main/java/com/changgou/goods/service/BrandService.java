@@ -10,10 +10,10 @@ public interface BrandService {
 
     /**
      * 根据分类id查询品牌集合--分类id
-     * @param categoryid
+     * @param categoryId
      * @return
      */
-    List<Brand> findByCategory(Integer categoryid);
+    List<Brand> findByCategory(Integer categoryId);
 
     /***
      * 查询所有

@@ -64,8 +64,4 @@ public interface CategoryService {
      * @return
      */
     Page<Category> findPage(Map<String, Object> searchMap, int page, int size);
-
-
-
-
-}
+    }

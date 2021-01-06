@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import tk.mybatis.mapper.entity.Example;
 
+import javax.annotation.Resource;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -23,18 +24,18 @@ import java.util.Map;
 @Service
 public class SpuServiceImpl implements SpuService {
 
-    @Autowired
+    @Resource
     private SpuMapper spuMapper;
 
-    @Autowired
+    @Resource
     private SkuMapper skuMapper;
 
     // 用于查询三级分类名称
-    @Autowired
+    @Resource
     private CategoryMapper categoryMapper;
 
     // 用于查询品牌信息
-    @Autowired
+    @Resource
     private BrandMapper brandMapper;
 
     /**
@@ -153,13 +154,11 @@ public class SpuServiceImpl implements SpuService {
         Spu spu = goods.getSpu();
         // 判断spu的id是否为空
         if(spu.getId() != null){
-            // 为空，则为增加数据
+            // 不为空，则为增加数据
             spu.setId(idWorker.nextId());
-            // 上传到数据库中
             spuMapper.insertSelective(spu);
         } else{
-            // 否则为修改数据
-            // 修改spu
+            // 否则为修改数据，修改spu
             spuMapper.updateByPrimaryKeySelective(spu);
 
             // 删除之前的List<Sku> delete from tb_sku where spu_id = ?
@@ -170,9 +169,9 @@ public class SpuServiceImpl implements SpuService {
 
         // 获取sku所在的三级分类
         Category category = categoryMapper.selectByPrimaryKey(spu.getCategory3Id());
+
         // 品牌信息
         Brand brand = brandMapper.selectByPrimaryKey(spu.getBrandId());
-
 
         // sku --> List集合
         Date currentDate = new Date(); // 创建时间和更新时间

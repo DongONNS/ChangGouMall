@@ -1,5 +1,7 @@
 package com.changgou.goods.pojo;
 
+import lombok.Data;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -11,27 +13,12 @@ import java.util.List;
  * spu 是指的通用属性
  * sku 是指的特有属性
  */
+@Data
 public class Goods implements Serializable {
 
     //Spu信息
     private Spu spu;
 
-    // Sku信息
+    // Sku集合
     private List<Sku> skuList;
-
-    public Spu getSpu() {
-        return spu;
-    }
-
-    public void setSpu(Spu spu) {
-        this.spu = spu;
-    }
-
-    public List<Sku> getSkuList() {
-        return skuList;
-    }
-
-    public void setSkuList(List<Sku> skuList) {
-        this.skuList = skuList;
-    }
 }

@@ -11,27 +11,32 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.entity.Example;
 
+import javax.annotation.Resource;
 import java.util.List;
 import java.util.Map;
 
 @Service
 public class ParaServiceImpl implements ParaService {
 
-    @Autowired
+    @Resource
     private ParaMapper paraMapper;
 
-    @Autowired
+    @Resource
     private CategoryMapper categoryMapper;
 
+    /**
+     * 根据分类id查询参数列表
+     * @param categoryId
+     * @return
+     */
     @Override
     public List<Para> findByCategory(Integer categoryId) {
         // 根据分类数据，获取template_id
         Category category = categoryMapper.selectByPrimaryKey(categoryId);
-        Integer templateId = category.getTemplateId();
 
         // 根据template_id查询参数集合
         Para para = new Para();
-        para.setTemplateId(templateId);
+        para.setTemplateId(category.getTemplateId());
 
         return paraMapper.select(para);
     }

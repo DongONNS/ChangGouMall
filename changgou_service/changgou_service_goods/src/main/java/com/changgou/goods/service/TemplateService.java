@@ -21,6 +21,8 @@ public interface TemplateService {
      */
     Template findById(Integer id);
 
+    Template findByCategoryId(Integer categoryId);
+
     /***
      * 新增
      * @param template
@@ -62,8 +64,4 @@ public interface TemplateService {
      * @return
      */
     Page<Template> findPage(Map<String, Object> searchMap, int page, int size);
-
-
-
-
 }

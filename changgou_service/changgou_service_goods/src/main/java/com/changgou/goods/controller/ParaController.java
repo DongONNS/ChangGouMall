@@ -14,7 +14,6 @@ import java.util.Map;
 @RequestMapping("/para")
 public class ParaController {
 
-
     @Autowired
     private ParaService paraService;
 
@@ -26,9 +25,8 @@ public class ParaController {
     @GetMapping(value = "/category/{id}")
     public Result<List<Para>> findByCategoryId(@PathVariable(value = "id")Integer categoryId){
         List<Para> paras = paraService.findByCategory(categoryId);
-        return new Result<List<Para>>(true, StatusCode.OK,"查询参数集合成功",paras);
+        return new Result<List<Para>>("查询参数集合成功",paras);
     }
-
 
     /**
      * 查询全部数据
@@ -51,7 +49,6 @@ public class ParaController {
         return new Result(true,StatusCode.OK,"查询成功",para);
     }
 
-
     /***
      * 新增数据
      * @param para
@@ -62,7 +59,6 @@ public class ParaController {
         paraService.add(para);
         return new Result(true,StatusCode.OK,"添加成功");
     }
-
 
     /***
      * 修改数据
@@ -76,7 +72,6 @@ public class ParaController {
         paraService.update(para);
         return new Result(true,StatusCode.OK,"修改成功");
     }
-
 
     /***
      * 根据ID删除品牌数据
@@ -100,7 +95,6 @@ public class ParaController {
         return new Result(true,StatusCode.OK,"查询成功",list);
     }
 
-
     /***
      * 分页搜索实现
      * @param searchMap
@@ -114,6 +108,4 @@ public class ParaController {
         PageResult pageResult=new PageResult(pageList.getTotal(),pageList.getResult());
         return new Result(true,StatusCode.OK,"查询成功",pageResult);
     }
-
-
 }

@@ -22,10 +22,10 @@ public class BrandController {
      * @return
      */
     @GetMapping("/category/{id}")
-    public Result<List<Brand>> findBrandByCategory(@PathVariable(name="id") Integer categoryid){
-        List<Brand> brands = brandService.findByCategory(categoryid);
+    public Result<List<Brand>> findBrandByCategory(@PathVariable(name="id") Integer categoryId){
+        List<Brand> brands = brandService.findByCategory(categoryId);
 
-        return new Result<List<Brand>>(true, StatusCode.OK,"查询品牌列表成功",brands);
+        return new Result<List<Brand>>("查询品牌列表成功",brands);
     }
 
     /**

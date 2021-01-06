@@ -14,7 +14,6 @@ import java.util.Map;
 @RequestMapping("/template")
 public class TemplateController {
 
-
     @Autowired
     private TemplateService templateService;
 
@@ -39,6 +38,16 @@ public class TemplateController {
         return new Result(true,StatusCode.OK,"查询成功",template);
     }
 
+    /**
+     * 根据分类查询模板数据
+     * @param categoryId
+     * @return
+     */
+    @GetMapping(value = "/category/{id}")
+    public Result<Template> findByCategoryId(@PathVariable(value = "id") int categoryId){
+        Template template = templateService.findByCategoryId(categoryId);
+        return new Result<Template>("查询成功",template);
+    }
 
     /***
      * 新增数据
@@ -102,6 +111,4 @@ public class TemplateController {
         PageResult pageResult=new PageResult(pageList.getTotal(),pageList.getResult());
         return new Result(true,StatusCode.OK,"查询成功",pageResult);
     }
-
-
 }

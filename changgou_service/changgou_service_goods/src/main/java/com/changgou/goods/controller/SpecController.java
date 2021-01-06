@@ -27,9 +27,8 @@ public class SpecController {
     @GetMapping(value = "/category/{id}")
     public Result<List<Spec>> findByCategoryId(@PathVariable(value="id")Integer categoryId){
         List<Spec> specs = specService.findByCategory(categoryId);
-        return new Result<List<Spec>>(true,StatusCode.OK,"根据分类id查询规格集合", specs);
+        return new Result<List<Spec>>("根据分类id查询规格集合", specs);
     }
-
 
     /**
      * 查询全部数据

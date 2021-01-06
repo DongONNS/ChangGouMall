@@ -13,7 +13,6 @@ public interface ParaService {
      */
     List<Para> findByCategory(Integer categoryId);
 
-
     /***
      * 查询所有
      * @return

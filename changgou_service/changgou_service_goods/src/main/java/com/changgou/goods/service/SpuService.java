@@ -35,7 +35,7 @@ public interface SpuService {
 
     /**
      * 根据id查询goods信息
-     * @parameter id spu的Id
+     * @parameter id spuId
      */
     Goods findGoodsById(Long id);
 
@@ -98,8 +98,4 @@ public interface SpuService {
      * @return
      */
     Page<Spu> findPage(Map<String, Object> searchMap, int page, int size);
-
-
-
-
 }

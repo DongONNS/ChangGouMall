@@ -11,16 +11,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.entity.Example;
 
+import javax.annotation.Resource;
 import java.util.List;
 import java.util.Map;
 
 @Service
 public class SpecServiceImpl implements SpecService {
 
-    @Autowired
+    @Resource
     private SpecMapper specMapper;
 
-    @Autowired
+    @Resource
     private CategoryMapper categoryMapper;
 
     /**
@@ -32,12 +33,10 @@ public class SpecServiceImpl implements SpecService {
     public List<Spec> findByCategory(Integer categoryId) {
         // 查找分类的template_id
         Category category = categoryMapper.selectByPrimaryKey(categoryId);
-        Integer templateId = category.getTemplateId();
 
         // 根据template_id查询规格 select * from tb_spec where template_id = 42;
         Spec spec = new Spec();
-        spec.setTemplateId(templateId);
-
+        spec.setTemplateId(category.getTemplateId());
         return specMapper.select(spec);
     }
 
