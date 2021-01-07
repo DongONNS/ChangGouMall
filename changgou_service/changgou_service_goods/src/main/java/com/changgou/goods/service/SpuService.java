@@ -34,6 +34,18 @@ public interface SpuService {
     void audit(Long spuId);
 
     /**
+     * 逻辑删除
+     * @param spuId
+     */
+    void logicDelete(Long spuId);
+
+    /**
+     * 还原被删除商品
+     * @param spuId
+     */
+    void restore(Long spuId);
+
+    /**
      * 根据id查询goods信息
      * @parameter id spuId
      */

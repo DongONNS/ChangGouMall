@@ -65,6 +65,28 @@ public class SpuController {
     }
 
     /**
+     * 恢复数据
+     * @param spuId
+     * @return
+     */
+    @PostMapping("/restore/{id}")
+    public Result restore( @PathVariable Long spuId){
+        spuService.restore(spuId);
+        return new Result("数据恢复成功");
+    }
+
+    /**
+     * 逻辑删除
+     * @param spuId
+     * @return
+     */
+    @DeleteMapping("/logic/delete/{id}")
+    public Result logicDelete(@PathVariable(value = "id") Long spuId){
+        spuService.logicDelete(spuId);
+        return new Result("逻辑删除商品成功");
+    }
+
+    /**
      * 根据SpuId查询Goods信息
      */
     @GetMapping(value = "/goods/{id}")
@@ -164,6 +186,4 @@ public class SpuController {
         PageResult pageResult=new PageResult(pageList.getTotal(),pageList.getResult());
         return new Result(true,StatusCode.OK,"查询成功",pageResult);
     }
-
-
 }

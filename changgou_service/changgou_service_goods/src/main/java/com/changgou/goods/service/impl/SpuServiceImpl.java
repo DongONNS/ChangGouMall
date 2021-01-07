@@ -12,6 +12,7 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 import tk.mybatis.mapper.entity.Example;
 
@@ -119,6 +120,44 @@ public class SpuServiceImpl implements SpuService {
         // 审核 修改状态
         spu.setStatus("1");
         spu.setIsMarketable("1");
+        spuMapper.updateByPrimaryKeySelective(spu);
+    }
+
+    /**
+     * 逻辑删除
+     * @param spuId
+     */
+    @Override
+    @Transactional
+    public void logicDelete(Long spuId) {
+        Spu spu = spuMapper.selectByPrimaryKey(spuId);
+        // 检查是否下架的上坪
+        if (!spu.getIsMarketable().equals("0")){
+            throw new RuntimeException("必须先下架再删除");
+        }
+        // 逻辑删除
+        spu.setIsDelete("1");
+
+        // 未审核
+        spu.setStatus("0");
+        spuMapper.updateByPrimaryKeySelective(spu);
+    }
+
+    /**
+     * 还原商品回收站的商品
+     * @param spuId
+     */
+    @Override
+    public void restore(Long spuId) {
+        Spu spu = spuMapper.selectByPrimaryKey(spuId);
+        // 检查是否删除的商品
+        if (!spu.getIsDelete().equals("1")){
+            throw new RuntimeException("此商品未删除");
+        }
+
+        // 设置商品为未删除 未审核
+        spu.setIsDelete("0");
+        spu.setStatus("0");
         spuMapper.updateByPrimaryKeySelective(spu);
     }
 
