@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import tk.mybatis.mapper.entity.Example;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /****
@@ -20,7 +21,7 @@ import java.util.List;
 @Service
 public class ContentServiceImpl implements ContentService {
 
-    @Autowired
+    @Resource
     private ContentMapper contentMapper;
 
 
