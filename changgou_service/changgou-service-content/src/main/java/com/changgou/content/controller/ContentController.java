@@ -72,7 +72,7 @@ public class ContentController {
     public Result delete(@PathVariable Long id){
         //调用ContentService实现根据主键删除
         contentService.delete(id);
-        return new Result(true,StatusCode.OK,"删除成功");
+        return new Result("删除成功");
     }
 
     /***
@@ -87,7 +87,7 @@ public class ContentController {
         content.setId(id);
         //调用ContentService实现修改Content
         contentService.update(content);
-        return new Result(true,StatusCode.OK,"修改成功");
+        return new Result("修改成功");
     }
 
     /***
@@ -99,7 +99,7 @@ public class ContentController {
     public Result add(@RequestBody   Content content){
         //调用ContentService实现添加Content
         contentService.add(content);
-        return new Result(true,StatusCode.OK,"添加成功");
+        return new Result("添加成功");
     }
 
     /***

@@ -9,32 +9,31 @@
         <outputRelativeToContentRoot value="true" />
         <module name="changgou-service-canal" />
         <module name="changgou_service_system" />
-        <module name="changgou_service_business" />
+        <module name="changgou_service_config" />
         <module name="changgou_user_oauth" />
         <module name="changgou-service-content" />
         <module name="changgou_service_goods_api" />
         <module name="changgou_web_item" />
         <module name="changgou_service_business_api" />
-        <module name="changgou_gateway_system" />
         <module name="changgou_service_file" />
         <module name="changgou_service_search" />
-        <module name="changgou_common" />
-        <module name="changgou_service_system_api" />
-        <module name="changgou_canal" />
+        <module name="changgou_service_search_api" />
         <module name="changgou_service_goods" />
+        <module name="changgou_service_system_api" />
+        <module name="changgou_service_config_api" />
+        <module name="changgou_service_business" />
+        <module name="changgou_gateway_system" />
         <module name="changgou_common_db" />
         <module name="changgou_service_order_api" />
         <module name="changgou_service_user" />
         <module name="changgou-service-content-api" />
         <module name="changgou_gateway_web" />
-        <module name="changgou_service_order" />
         <module name="changgou_web_search" />
         <module name="changgou_service_item_api" />
         <module name="changgou_service_user_api" />
         <module name="changgou_eureka" />
-        <module name="changgou_service_search_api" />
-        <module name="changgou_service_config_api" />
-        <module name="changgou_service_config" />
+        <module name="changgou_common" />
+        <module name="changgou_service_order" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

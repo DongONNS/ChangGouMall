@@ -3,11 +3,6 @@ package com.changgou.content.pojo;
 import javax.persistence.*;
 import java.io.Serializable;
 
-/****
- * @Author:admin
- * @Description:ContentCategory构建
- * @Date 2019/6/14 19:13
- *****/
 @Table(name="tb_content_category")
 public class ContentCategory implements Serializable{
 
@@ -18,8 +13,6 @@ public class ContentCategory implements Serializable{
 
     @Column(name = "name")
 	private String name;//分类名称
-
-
 
 	//get方法
 	public Long getId() {
@@ -39,6 +32,4 @@ public class ContentCategory implements Serializable{
 	public void setName(String name) {
 		this.name = name;
 	}
-
-
 }

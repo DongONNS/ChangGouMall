@@ -12,6 +12,18 @@ public class Result<T> implements Serializable {
     private String message;//返回消息
     private T data;//返回数据
 
+    public Result(boolean flag, Integer code, String message, Object data) {
+        this.flag = flag;
+        this.code = code;
+        this.message = message;
+        this.data = (T) data;
+    }
+
+    public Result (boolean flag,Integer code,String message){
+        this.flag = flag;
+        this.code = code;
+        this.message = message;
+    }
 
     public Result(String message, Object data){
         this.flag = true;
@@ -20,12 +32,7 @@ public class Result<T> implements Serializable {
         this.data = (T)data;
     }
 
-    public Result(boolean flag, Integer code, String message, Object data) {
-        this.flag = flag;
-        this.code = code;
-        this.message = message;
-        this.data = (T) data;
-    }
+
 
     public Result(String message) {
         this.flag = true;

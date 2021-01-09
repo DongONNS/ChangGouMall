@@ -4,7 +4,7 @@ spring:
   application:
     name: canal
   redis:  # 指向docker容器
-    host: 192.168.171.128
+    host: 10.170.162.0
     port: 6379
 eureka:
   client:
@@ -30,5 +30,5 @@ canal:
   client:
     instances:
       example:
-        host: 192.168.171.128
+        host: 10.170.162.0
         port: 11111

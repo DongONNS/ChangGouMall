@@ -11,16 +11,17 @@ import tk.mybatis.spring.annotation.MapperScan;
 @EnableEurekaClient
 @MapperScan(basePackages = {"com.changgou.goods.dao"})  // 用于扫描Mapper接口
 public class GoodsApplication {
+
     public static void main(String[] args) {
         SpringApplication.run( GoodsApplication.class);
     }
 
-    /***
-     * IdWorker
-     * @return
-     */
-    @Bean
-    public IdWorker idWorker(){
-        return new IdWorker(0,0);
-    }
+//    /***
+//     * IdWorker
+//     * @return
+//     */
+//    @Bean
+//    public IdWorker idWorker(){
+//        return new IdWorker(0,0);
+//    }
 }

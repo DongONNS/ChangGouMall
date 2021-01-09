@@ -40,6 +40,7 @@
             <artifactId>starter-canal</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
+
         <dependency>
             <groupId>com.changgou</groupId>
             <artifactId>changgou-service-content-api</artifactId>
