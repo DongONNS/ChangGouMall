@@ -22,9 +22,9 @@ public class SkuController {
      * @return
      * @throws Exception
      */
-    @GetMapping
+    @PostMapping
     // 允许用户输入为空
-    public Map search(@RequestParam(required = false) Map<String,String> searchMap) throws Exception {
+    public Map search(@RequestBody(required = false) Map<String,String> searchMap) throws Exception {
         return skuService.search(searchMap);
     }
 
@@ -32,7 +32,17 @@ public class SkuController {
      * 导入数据
      * @return
      */
-    @GetMapping(value = "/import")
+    @GetMapping("/import")
+    public Result search(){
+        skuService.importSku();
+        return new Result("导入sku数据到ElasticSearch成功");
+    }
+
+    /**
+     * 导入数据
+     * @return
+     */
+    @GetMapping(value = "/importData")
     public Result importData(){
         skuService.importData();
         System.out.println("============导入数据成功===========");

@@ -34,11 +34,11 @@ public interface SkuFeign {
     @GetMapping("/{id}")
     Result<Sku> findById(@PathVariable String id);
 
-//    /***
-//     * 根据审核状态查询Sku
-//     * @param status
-//     * @return
-//     */
-//    @GetMapping("/status/{status}")
-//    Result<List<Sku>> findByStatus(@PathVariable String status);
+    /***
+     * 根据审核状态查询Sku
+     * @param status
+     * @return
+     */
+    @GetMapping("/status/{status}")
+    Result<List<Sku>> findByStatus(@PathVariable String status);
 }

@@ -9,6 +9,11 @@ public interface SkuService {
     void importData();
 
     /**
+     * 导入SKU数据
+     */
+    void importSku();
+
+    /**
      * 条件搜索
      * @param searchMap
      * @return

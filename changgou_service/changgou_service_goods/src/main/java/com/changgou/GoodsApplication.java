@@ -15,13 +15,4 @@ public class GoodsApplication {
     public static void main(String[] args) {
         SpringApplication.run( GoodsApplication.class);
     }
-
-//    /***
-//     * IdWorker
-//     * @return
-//     */
-//    @Bean
-//    public IdWorker idWorker(){
-//        return new IdWorker(0,0);
-//    }
 }
