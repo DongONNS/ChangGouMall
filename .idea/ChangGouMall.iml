@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/changgou_gateway/changgou_gateway_system/src/test/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/changgou_canal/src/main/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/changgou_user_oauth/src/test/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/changgou_service_api/changgou_service_system_api/src/main/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/changgou_service_api/changgou_service_user_api/src/main/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/changgou_service_api/changgou_service_search_api/src/main/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/changgou_service/changgou_service_system/src/main/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/changgou_service/changgou_service_config/src/main/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/changgou_service_api/changgou_service_order_api/src/main/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/changgou_service_api/changgou-service-content-api/src/main/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/changgou_service_api/changgou_service_item_api/src/main/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/changgou_common/src/test/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/changgou_service/changgou_service_order/src/main/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/changgou_eureka/src/main/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/changgou_gateway/changgou_gateway_web/src/main/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/changgou_user_oauth/src/main/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/changgou_service_api/changgou_service_business_api/src/main/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/changgou_web/changgou_web_item/src/main/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/changgou_web/changgou_web_search/src/main/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/changgou_gateway/changgou_gateway_system/src/main/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/changgou_service/changgou_service_file/src/main/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/changgou_service_api/changgou_service_goods_api/src/main/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/changgou_common/src/main/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/changgou_service/changgou_service_goods/src/main/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/changgou_service/changgou_service_user/src/main/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/changgou_service/changgou-service-canal/src/main/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/changgou_service/changgou_service_business/src/main/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/changgou_service_api/changgou_service_config_api/src/main/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/changgou_service/changgou-service-content/src/main/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/changgou_service/changgou_service_search/src/main/java" isTestSource="false" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>
