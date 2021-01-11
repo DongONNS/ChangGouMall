@@ -22,9 +22,9 @@ public class SkuController {
      * @return
      * @throws Exception
      */
-    @PostMapping
+    @GetMapping
     // 允许用户输入为空
-    public Map search(@RequestBody(required = false) Map<String,String> searchMap) throws Exception {
+    public Map search(@RequestParam(required = false) Map<String,String> searchMap) throws Exception {
         return skuService.search(searchMap);
     }
 
