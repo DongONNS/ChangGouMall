@@ -17,6 +17,5 @@ public interface SkuFeign {
      * @throws Exception
      */
     @GetMapping
-    // 允许用户输入为空
-    Map search(@RequestParam(required = false) Map<String,String> searchMap) throws Exception;
+    Map search(@RequestParam(required = false) Map searchMap) throws Exception;
 }

@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
-	<title>产品列表页</title>
-	 <link rel="icon" href="/img/favicon.ico">
+	<title >产品列表页</title>
+	<link rel="icon" href="/img/favicon.ico">
 	
 
     <link rel="stylesheet" type="text/css" href="/css/all.css" />
@@ -53,13 +53,11 @@
 					</div>
 					<div class="yui3-u Rit searchArea">
 						<div class="search">
-							<form action="/search/list" class="sui-form form-inline">
+							<form action="/search/list" class="sui-form form-inline" method="get">
 								<!--searchAutoComplete-->
 								<div class="input-append">
-									<input type="text"
-                                           th:value="${#maps.containsKey(searchMap,'keywords')?searchMap.keywords:''}"
-                                           id="autocomplete" name="keywords"  class="input-error input-xxlarge" />
-									<button class="sui-btn btn-xlarge btn-danger" type="submit">搜索</button>
+									<input name="keywords" th:value="${#maps.containsKey(searchMap,'keywords')}? ${searchMap.keywords}:''" type="text" id="autocomplete"  class="input-error input-xxlarge" />
+									<input type="submit" class="sui-btn btn-xlarge btn-danger">搜索</input>
 								</div>
 							</form>
 						</div>
@@ -468,32 +466,29 @@
 			<div class="bread">
 				<ul class="fl sui-breadcrumb">
 					<li>
-						<a href="#">全部结果</a>
+						<a href="#" th:text="${result.total}">全部结果</a>
 					</li>
-					<li class="active" th:if="${#maps.containsKey(searchMap,'category')}">
-                        <em th:text="${searchMap.category}"></em>
-                        <a>×</a>
-                    </li>
+					<li class="active" th:text="${url}">智能手机</li>
 				</ul>
-
 				<ul class="fl sui-tag">
-
+					<li class="with-x" th:if="${#maps.containsKey(searchMap,'category')}">
+                        商品分类:<a th:href="@{${#strings.replace(url,'category='+searchMap.category,'')}}" th:text="${searchMap.category}"></a><i>×</i>
+                    </li>
 					<li class="with-x" th:if="${#maps.containsKey(searchMap,'brand')}">
-                        <em th:text="${searchMap.brand}"></em>
-                        <a>×</a>
+                        品牌:<a th:href="@{${#strings.replace(url,'brand='+searchMap.brand,'')}}" th:text="${searchMap.brand}"></a><i>×</i>
                     </li>
-
                     <li class="with-x" th:if="${#maps.containsKey(searchMap,'price')}">
-                        <em th:text="${searchMap.price}"></em>
-                        <a>×</a>
+                        价格:<a th:href="@{${#strings.replace(url,'price='+searchMap.price,'')}}" th:text="${searchMap.price}"></a><i>×</i>
                     </li>
+                    <!--spec_手机屏幕尺寸:5.5寸  -->
+					<li class="with-x" th:each="spec,specStat:${searchMap}" th:if="${#strings.startsWith(spec.key,'spec_')}">
+                        <span th:text="${#strings.substring(spec.key,5)}">手机屏幕尺寸</span>
+                        :
+                        <span th:text="${spec.value}">5.5寸</span>
 
-                    <li class="with-x" th:each="spec:${searchMap}" th:if="${#strings.startsWith(spec.key,'spec_')}">
-                        <em th:text="${#strings.replace(spec.key,'spec_','')}"></em>:<em th:text="${spec.value}"></em>
-                        <a>×</a>
+                        <a th:href="@{${#strings.replace(url,spec.key+'='+spec.value,'')}}">×</a>
                     </li>
 				</ul>
-
 				<form class="fl sui-form form-dark">
 					<div class="input-control control-right">
 						<input type="text" />
@@ -503,72 +498,64 @@
 			</div>
 			<!--selector-->
 			<div class="clearfix selector">
-                <!-- 用户没有选择分类搜索，则显示分类 -->
 				<div class="type-wrap" th:unless="${#maps.containsKey(searchMap,'category')}">
-					<div class="fl key">分类</div>
-					<div class="fl value">
-                        <span th:each="category,categoryStat:${result.categoryList}" >
-                            <!-- 每次点击分类，在上次请求的url基础上添加category=点击的分类 -->
-
-                            <a th:href="@{${url}(category=${category}) }" th:text="${category}"></a>
-                            <em th:unless="${categoryStat.last}">、</em>
-                        </span>
+					<div class="fl key" >商品分类</div>
+					<div class="fl value" th:each="category:${result.categoryList}">
+                        <a th:href="@{${url}(category=${category})}" th:text="${category}"></a>
                     </div>
 					<div class="fl ext"></div>
 				</div>
-
-                <!-- 用户没有选择品牌搜索时，显示品牌信息 -->
 				<div class="type-wrap logo" th:unless="${#maps.containsKey(searchMap,'brand')}">
 					<div class="fl key brand">品牌</div>
 					<div class="value logos">
-						<ul class="logo-list" th:each="brand:${result.brandList}">
-                            <li>
-                                <!-- 每次点击品牌，在上次请求的url基础之上添加brand=点击的品牌 -->
+						<ul class="logo-list">
+							<li th:each="brand:${result.brandList}">
                                 <a th:href="@{${url}(brand=${brand})}" th:text="${brand}"></a>
                             </li>
-                        </ul>
+						</ul>
 					</div>
 					<div class="ext">
 						<a href="javascript:void(0);" class="sui-btn">多选</a>
 						<a href="javascript:void(0);">更多</a>
 					</div>
 				</div>
+                <!--点击了规格之后要隐藏-->
+				<div class="type-wrap" th:each="spec,specStat:${result.specMap}" th:unless="${#maps.containsKey(searchMap,'spec_'+spec.key)}"  >
 
-                <!-- 当用户搜索该规格时才显示，用户搜索了该规格，则不显示该规格 -->
-				<div class="type-wrap" th:each="spec:${result.specList}" th:unless="${#maps.containsKey(searchMap,'spec_'+spec.key)}">
 					<div class="fl key" th:text="${spec.key}">网络制式</div>
 					<div class="fl value">
 						<ul class="type-list">
-							<li th:each="opt:${spec.value}">
-                                <!-- 每次点击品牌，在上次请求的url基础之上添加"spec_规格名字=点击的规格值"-->
-								<a th:href="@{${url}('spec_'+${spec.key} = ${opt})}" th:text="${opt}"></a>
+                            <!--Set<String>-->
+							<li th:each="op,opStat:${spec.value}">
+								<a th:href="@{${url}('spec_'+${spec.key}=${op})}" th:text="${op}"></a>
 							</li>
 						</ul>
 					</div>
 					<div class="fl ext"></div>
 				</div>
 
-				<div class="type-wrap" th:unless="${#maps.containsKey(searchMap,'price')}">
+
+				<div class="type-wrap">
 					<div class="fl key">价格</div>
 					<div class="fl value">
-						<ul class="type-list">
+						<ul class="type-list" th:unless="${#maps.containsKey(searchMap,'price')}">
 							<li>
-								<a th:href="@{${url}(price='0-500元')}">0-500元</a>
+								<a th:href="@{${url}(price='0-500')}">0-500元</a>
 							</li>
 							<li>
-								<a th:href="@{${url}(price='500-1000元')}">500-1000元</a>
+                                <a th:href="@{${url}(price='0-500')}">500-1000元</a>
 							</li>
 							<li>
-								<a th:href="@{${url}(price='1000-1500元')}">1000-1500元</a>
+                                <a th:href="@{${url}(price='1000-1500')}">1000-1500元</a>
 							</li>
 							<li>
-								<a th:href="@{${url}(price='1500-2000元')}">1500-2000元</a>
+                                <a th:href="@{${url}(price='1500-2000')}">1500-2000元</a>
 							</li>
 							<li>
-								<a th:href="@{${url}(price='2000-3000元')}">2000-3000元 </a>
+                                <a th:href="@{${url}(price='2000-3000')}">2000-3000元 </a>
 							</li>
 							<li>
-								<a th:href="@{${url}(price='3000元以上')}">3000元以上</a>
+                                <a th:href="@{${url}(price='3000-*')}">3000元以上</a>
 							</li>
 						</ul>
 					</div>
@@ -617,34 +604,27 @@
 							<li>
 								<a href="#">评价</a>
 							</li>
-
 							<li>
-								<a th:href="@{${url}(sortField=price,sortRule=ASC)}">价格升序</a>
+								<a href="#">价格</a>
 							</li>
-
-                            <li>
-                                <a th:href="@{${url}(sortField=price,sortRule=DESC)}">价格降序</a>
-                            </li>
-
 						</ul>
 					</div>
 				</div>
 				<div class="goods-list">
 					<ul class="yui3-g">
-						<li th:each="item:${result.rows}" class="yui3-u-1-5">
+						<li class="yui3-u-1-5" th:each="sku,skuStat:${result.rows}">
 							<div class="list-wrap">
 								<div class="p-img">
-									<a href="item.html"  target="_blank"><img th:src="${item.image}" /></a>
+									<a href="item.html"  target="_blank"><img th:src="${sku.image}" /></a>
 								</div>
 								<div class="price">
 									<strong>
 											<em>¥</em>
-											<i th:text="${item.price}"></i>
+											<i th:text="${sku.price}">6088.00</i>
 										</strong>
 								</div>
 								<div class="attr">
-                                    <!-- utext:会识别相关的标签 -->
-									<a target="_blank" href="item.html"  title="" th:utext="${#strings.abbreviate(item.name,100)}"></a>
+									<a target="_blank" href="item.html"  th:utext="${sku.name}">Apple苹果iPhone 6s (A1699)Apple苹果iPhone 6s (A1699)Apple苹果iPhone 6s (A1699)Apple苹果iPhone 6s (A1699)</a>
 								</div>
 								<div class="commit">
 									<i class="command">已有<span>2000</span>人评价</i>
@@ -655,27 +635,30 @@
 								</div>
 							</div>
 						</li>
+
 					</ul>
 				</div>
 				<div class="fr page">
 					<div class="sui-pagination pagination-large">
 						<ul>
-							<li class="prev">
-								<a th:href="@{${url}(pageNum=${pageInfo.upper})}"><<上一页</a>
+							<li class="prev disabled">
+								<a href="#" th:href="@{${url}(pageNum=${page.upper})}">«</a>
+							</li>
+                            <!--active-->
+                            <!--[1,2,3,4,5]-->
+							<li th:class="${page.currentpage}==${i}?'active':''" th:each="i:${#numbers.sequence(page.lpage,page.rpage)}">
+								<a href="#" th:href="@{${url}(pageNum=${i})}" th:text="${i}">1</a>
 							</li>
 
-                            <li th:each="i:${#numbers.sequence(pageInfo.lpage,pageInfo.rpage)}" th:class="${pageInfo.currentpage}==${i}?'active':''">
-                                <a th:href="@{${url}(pageNum=${i})}" th:text="${i}"></a>
-                            </li>
-
+							<li class="dotted"><span>...</span></li>
 							<li class="next">
-                                <a th:href="@{${url}(pageNum=${pageInfo.next})}"上一页>></a>
+								<a href="#" th:href="@{${url}(pageNum=${page.next})}">下一页»</a>
 							</li>
 						</ul>
-						<div><span>共<em th:text="${pageInfo.last}"></em>页&nbsp;</span><span>
+						<div><span>共10页&nbsp;</span><span>
       到第
       <input type="text" class="page-num">
-      页<button class="page-confirm" onclick="alert(1)">确定</button></span></div>
+      页 <button class="page-confirm" onclick="alert(1)">确定</button></span></div>
 					</div>
 				</div>
 			</div>
@@ -965,12 +948,12 @@
 							<div class="jt-history-wrap">
 								<ul>
 									<!--<li class="jth-item">
-										<a href="#" class="img-wrap"> <img src="../../.../portal/img/like_03.png" height="100" width="100" /> </a>
+										<a href="#" class="img-wrap"> <img src="././../portal/img/like_03.png" height="100" width="100" /> </a>
 										<a class="add-cart-button" href="#" target="_blank">加入购物车</a>
 										<a href="#" target="_blank" class="price">￥498.00</a>
 									</li>
 									<li class="jth-item">
-										<a href="#" class="img-wrap"> <img src="../../../portal/img/like_02.png" height="100" width="100" /></a>
+										<a href="#" class="img-wrap"> <img src="./././portal/img/like_02.png" height="100" width="100" /></a>
 										<a class="add-cart-button" href="#" target="_blank">加入购物车</a>
 										<a href="#" target="_blank" class="price">￥498.00</a>
 									</li>-->

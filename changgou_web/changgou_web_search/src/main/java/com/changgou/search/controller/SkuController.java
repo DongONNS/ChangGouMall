@@ -25,9 +25,9 @@ public class SkuController {
      */
     @GetMapping(value = "/list")
     public String search(@RequestParam(required = false) Map<String,String> searchMap, Model model) throws Exception {
+
         Map<String,Object> resultMap = skuFeign.search(searchMap);
         model.addAttribute("result",resultMap);
-
         /**
          * 计算分页
          * total : 总记录数
@@ -46,10 +46,6 @@ public class SkuController {
         // 获取上次请求地址
         String url = getUrl(searchMap);
         model.addAttribute("url",url);
-
-//        model.addAttribute("url",urls[0]);
-//        model.addAttribute("sortUrl",urls[1]);
-
         return "search";
     }
 

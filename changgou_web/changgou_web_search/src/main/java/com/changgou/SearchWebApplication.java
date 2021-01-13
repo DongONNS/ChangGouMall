@@ -9,6 +9,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @EnableEurekaClient
 @EnableFeignClients(basePackages = "com.changgou.search.feign")
 public class SearchWebApplication {
+
     public static void main(String[] args) {
         SpringApplication.run(SearchWebApplication.class,args);
     }
