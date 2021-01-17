@@ -557,15 +557,14 @@
 					<div class="clearfix choose">
 						<div id="specification" class="summary-wrap clearfix">
                             <!--循环MAP-->
-							<dl th:each="spec,specStat:${specificationList}">
+							<dl th:each="spec:${specificationList}">
 								<dt>
 									<div class="fl title">
 									    <i th:text="${spec.key}"></i>
 								    </div>
 								</dt>
-                                <dd th:each="arrValue:${specStat.current.value}">
-                                    <a href="javascript:;"  th:v-bind:class="|{selected:sel('${spec.key}','${arrValue}')}|"
-                                                            th:@click="|selectSpecification('${spec.key}','${arrValue}')|"  >
+                                <dd th:each="arrValue:${spec.current.value}">
+                                    <a href="javascript:;" >
                                         <i th:text="${arrValue}"></i>
                                         <span title="点击取消选择">&nbsp;</span>
                                     </a>

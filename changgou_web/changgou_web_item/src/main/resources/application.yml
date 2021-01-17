@@ -20,4 +20,5 @@ spring:
   #rabbitmq:
   #  host: 192.168.25.138
 # 生成静态页的位置
-pagepath: F:/Project/changgou_workspace/changgou/changgou_parent/changgou_web/changgou_web_item/src/main/resources/templates/items
+#pagepath: F:/Project/changgou_workspace/changgou/changgou_parent/changgou_web/changgou_web_item/src/main/resources/templates/items
+pagePath: F:\MyProjects\ChangGouMall\changgou_web\changgou_web_item\src\main\resources\templates\items

@@ -36,8 +36,8 @@ public class PageServiceImpl implements PageService {
     private TemplateEngine templateEngine;
 
     //生成静态文件路径
-    @Value("${pagepath}")
-    private String pagepath;
+    @Value("${pagePath}")
+    private String pagePath;
 
     /**
      * 构建数据模型
@@ -50,7 +50,6 @@ public class PageServiceImpl implements PageService {
 
         //获取spu 和SKU列表
         Result<Spu> result = spuFeign.findById(spuId);
-
         Spu spu = result.getData();
 
         //获取分类信息
@@ -87,7 +86,7 @@ public class PageServiceImpl implements PageService {
         context.setVariables(dataModel);
 
         // 2.准备文件
-        File dir = new File(pagepath);
+        File dir = new File(pagePath);
         if (!dir.exists()) {
             dir.mkdirs();
         }

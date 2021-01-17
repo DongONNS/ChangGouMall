@@ -5,5 +5,5 @@ public interface PageService {
      * 根据商品的 ID 生成静态页
      * @param spuId
      */
-    public void createPageHtml(Long spuId) ;
+    void createPageHtml(Long spuId) ;
 }
