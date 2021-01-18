@@ -62,8 +62,4 @@ public interface AddressService {
      * @return
      */
     Page<Address> findPage(Map<String, Object> searchMap, int page, int size);
-
-
-
-
 }

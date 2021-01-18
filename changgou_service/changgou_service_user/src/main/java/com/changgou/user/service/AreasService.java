@@ -62,8 +62,4 @@ public interface AreasService {
      * @return
      */
     Page<Areas> findPage(Map<String, Object> searchMap, int page, int size);
-
-
-
-
 }

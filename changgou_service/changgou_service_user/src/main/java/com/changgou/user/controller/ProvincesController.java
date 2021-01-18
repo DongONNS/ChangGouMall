@@ -14,7 +14,6 @@ import java.util.Map;
 @RequestMapping("/provinces")
 public class ProvincesController {
 
-
     @Autowired
     private ProvincesService provincesService;
 
@@ -30,15 +29,14 @@ public class ProvincesController {
 
     /***
      * 根据ID查询数据
-     * @param provinceid
+     * @param provinceId
      * @return
      */
-    @GetMapping("/{provinceid}")
-    public Result findById(@PathVariable String provinceid){
-        Provinces provinces = provincesService.findById(provinceid);
+    @GetMapping("/{provinceId}")
+    public Result findById(@PathVariable String provinceId){
+        Provinces provinces = provincesService.findById(provinceId);
         return new Result(true,StatusCode.OK,"查询成功",provinces);
     }
-
 
     /***
      * 新增数据
@@ -51,29 +49,27 @@ public class ProvincesController {
         return new Result(true,StatusCode.OK,"添加成功");
     }
 
-
     /***
      * 修改数据
      * @param provinces
-     * @param provinceid
+     * @param provinceId
      * @return
      */
-    @PutMapping(value="/{provinceid}")
-    public Result update(@RequestBody Provinces provinces,@PathVariable String provinceid){
-        provinces.setProvinceid(provinceid);
+    @PutMapping(value="/{provinceId}")
+    public Result update(@RequestBody Provinces provinces,@PathVariable String provinceId){
+        provinces.setProvinceId(provinceId);
         provincesService.update(provinces);
         return new Result(true,StatusCode.OK,"修改成功");
     }
 
-
     /***
      * 根据ID删除品牌数据
-     * @param provinceid
+     * @param provinceId
      * @return
      */
-    @DeleteMapping(value = "/{provinceid}" )
-    public Result delete(@PathVariable String provinceid){
-        provincesService.delete(provinceid);
+    @DeleteMapping(value = "/{provinceId}" )
+    public Result delete(@PathVariable String provinceId){
+        provincesService.delete(provinceId);
         return new Result(true,StatusCode.OK,"删除成功");
     }
 
@@ -88,7 +84,6 @@ public class ProvincesController {
         return new Result(true,StatusCode.OK,"查询成功",list);
     }
 
-
     /***
      * 分页搜索实现
      * @param searchMap
@@ -102,6 +97,4 @@ public class ProvincesController {
         PageResult pageResult=new PageResult(pageList.getTotal(),pageList.getResult());
         return new Result(true,StatusCode.OK,"查询成功",pageResult);
     }
-
-
 }

@@ -14,7 +14,6 @@ import java.util.Map;
 @RequestMapping("/cities")
 public class CitiesController {
 
-
     @Autowired
     private CitiesService citiesService;
 
@@ -30,15 +29,14 @@ public class CitiesController {
 
     /***
      * 根据ID查询数据
-     * @param cityid
+     * @param cityId
      * @return
      */
-    @GetMapping("/{cityid}")
-    public Result findById(@PathVariable String cityid){
-        Cities cities = citiesService.findById(cityid);
+    @GetMapping("/{cityId}")
+    public Result findById(@PathVariable String cityId){
+        Cities cities = citiesService.findById(cityId);
         return new Result(true,StatusCode.OK,"查询成功",cities);
     }
-
 
     /***
      * 新增数据
@@ -51,29 +49,27 @@ public class CitiesController {
         return new Result(true,StatusCode.OK,"添加成功");
     }
 
-
     /***
      * 修改数据
      * @param cities
-     * @param cityid
+     * @param cityId
      * @return
      */
-    @PutMapping(value="/{cityid}")
-    public Result update(@RequestBody Cities cities,@PathVariable String cityid){
-        cities.setCityid(cityid);
+    @PutMapping(value="/{cityId}")
+    public Result update(@RequestBody Cities cities,@PathVariable String cityId){
+        cities.setCityId(cityId);
         citiesService.update(cities);
         return new Result(true,StatusCode.OK,"修改成功");
     }
 
-
     /***
      * 根据ID删除品牌数据
-     * @param cityid
+     * @param cityId
      * @return
      */
-    @DeleteMapping(value = "/{cityid}" )
-    public Result delete(@PathVariable String cityid){
-        citiesService.delete(cityid);
+    @DeleteMapping(value = "/{cityId}" )
+    public Result delete(@PathVariable String cityId){
+        citiesService.delete(cityId);
         return new Result(true,StatusCode.OK,"删除成功");
     }
 
@@ -88,7 +84,6 @@ public class CitiesController {
         return new Result(true,StatusCode.OK,"查询成功",list);
     }
 
-
     /***
      * 分页搜索实现
      * @param searchMap
@@ -102,6 +97,4 @@ public class CitiesController {
         PageResult pageResult=new PageResult(pageList.getTotal(),pageList.getResult());
         return new Result(true,StatusCode.OK,"查询成功",pageResult);
     }
-
-
 }

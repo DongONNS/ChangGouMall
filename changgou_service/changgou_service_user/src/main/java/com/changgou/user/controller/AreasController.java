@@ -14,7 +14,6 @@ import java.util.Map;
 @RequestMapping("/areas")
 public class AreasController {
 
-
     @Autowired
     private AreasService areasService;
 
@@ -55,12 +54,12 @@ public class AreasController {
     /***
      * 修改数据
      * @param areas
-     * @param areaid
+     * @param areaId
      * @return
      */
-    @PutMapping(value="/{areaid}")
-    public Result update(@RequestBody Areas areas,@PathVariable String areaid){
-        areas.setAreaid(areaid);
+    @PutMapping(value="/{areaId}")
+    public Result update(@RequestBody Areas areas,@PathVariable String areaId){
+        areas.setAreaId(areaId);
         areasService.update(areas);
         return new Result(true,StatusCode.OK,"修改成功");
     }
@@ -68,12 +67,12 @@ public class AreasController {
 
     /***
      * 根据ID删除品牌数据
-     * @param areaid
+     * @param areaId
      * @return
      */
-    @DeleteMapping(value = "/{areaid}" )
-    public Result delete(@PathVariable String areaid){
-        areasService.delete(areaid);
+    @DeleteMapping(value = "/{areaId}" )
+    public Result delete(@PathVariable String areaId){
+        areasService.delete(areaId);
         return new Result(true,StatusCode.OK,"删除成功");
     }
 

@@ -1,6 +1,6 @@
 spring:
   redis:
-    host: 192.168.171.128
+    host: 10.170.162.0
     port: 6379
   application:
     name: gateway-web
@@ -25,11 +25,11 @@ spring:
               # RequestRateLimiter : 局部限流过滤器
             - name: RequestRateLimiter #请求数限流 名字不能随便写 ，使用默认的facatory
               args:
-                # 用户身份唯一识别标识符
+                # 用户身份唯一识别标识符，通过SPEL表达式指定使用哪一个KeyResolver
                 key-resolver: "#{@ipKeyResolver}"
-                # 每秒钟只允许1个请求
+                # 每秒钟只允许1个请求,该数量范围内的请求不会被丢弃。这是令牌桶填充的速率
                 redis-rate-limiter.replenishRate: 1
-                # 允许并发有1个请求
+                # 允许并发有1个请求，此值设置为0将阻止所有请求
                 redis-rate-limiter.burstCapacity: 1
           #用户微服务
           - id: changgou_user_route

@@ -102,6 +102,4 @@ public class AddressController {
         PageResult pageResult=new PageResult(pageList.getTotal(),pageList.getResult());
         return new Result(true,StatusCode.OK,"查询成功",pageResult);
     }
-
-
 }

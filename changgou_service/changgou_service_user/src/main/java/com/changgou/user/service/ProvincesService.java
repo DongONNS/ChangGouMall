@@ -35,9 +35,9 @@ public interface ProvincesService {
 
     /***
      * 删除
-     * @param id
+     * @param provinceId
      */
-    void delete(String provinceid);
+    void delete(String provinceId);
 
     /***
      * 多条件搜索
@@ -62,8 +62,4 @@ public interface ProvincesService {
      * @return
      */
     Page<Provinces> findPage(Map<String, Object> searchMap, int page, int size);
-
-
-
-
 }

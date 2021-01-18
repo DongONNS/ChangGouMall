@@ -62,8 +62,4 @@ public interface CitiesService {
      * @return
      */
     Page<Cities> findPage(Map<String, Object> searchMap, int page, int size);
-
-
-
-
 }
